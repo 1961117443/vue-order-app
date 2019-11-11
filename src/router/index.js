@@ -16,6 +16,8 @@ import Home from '@/components/tabbar/HomeContainer.vue'
 import Cateory from '@/components/tabbar/CateoryContainer.vue'
 import Shopcar from '@/components/tabbar/ShopcarContainer.vue'
 import Member from '@/components/tabbar/MemberContainer.vue'
+import GoodsList from '@/components/goods/GoodsList.vue'
+import GoodsInfo from '@/components/goods/GoodsInfo.vue'
 /**
  * 路由相关属性说明
  * hidden: 当设置hidden为true时，意思不在sideBars侧边栏中显示
@@ -32,7 +34,9 @@ export const currencyRoutes = [
   { path: '/home', component: Home },
   { path: '/cateory', component: Cateory },
   { path: '/shopcar', component: Shopcar },
-  { path: '/member', component: Member }
+  { path: '/member', component: Member },
+  { path: '/home/goodslist', component: GoodsList },
+  { path: '/home/goodsinfo/:id', component: GoodsInfo }
 ]
 /*动态添加routers*/
 export const asyncRoutes = []

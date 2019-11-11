@@ -17,7 +17,7 @@ module.exports = {
     config.optimization.runtimeChunk('single')
   },
   devServer: {
-    host: 'localhost',
+    host: '192.168.1.104',
     port: '8080',
     hot: true,
     open: true,
