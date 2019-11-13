@@ -35,8 +35,8 @@ export const currencyRoutes = [
   { path: '/cateory', component: Cateory },
   { path: '/shopcar', component: Shopcar },
   { path: '/member', component: Member },
-  { path: '/home/goodslist', component: GoodsList },
-  { path: '/home/goodsinfo/:id', component: GoodsInfo }
+  { path: '/goodslist', component: GoodsList },
+  { path: '/goodsinfo/:id', component: GoodsInfo }
 ]
 /*动态添加routers*/
 export const asyncRoutes = []

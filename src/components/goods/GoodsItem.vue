@@ -1,5 +1,5 @@
 <template>
-    <router-link class="goods-item" :to="'/home/goodsinfo/'+goods.id" tag="div">
+    <div class="goods-item" @click="goDetail(goods.id)">
         <img :src="goods.src" alt="">
         <h1 class="title">({{ goods.id }}){{ goods.title }}</h1>
         <div class="info">
@@ -12,7 +12,7 @@
                 <span>剩{{ goods.stock_quantity }}件</span>
             </p>
         </div>
-    </router-link>
+    </div>
 </template>
 
 <script>
@@ -20,6 +20,11 @@
         data(){
             return{
 
+            }
+        },
+        methods:{
+            goDetail(id){
+                this.$router.push('/goodsinfo/'+id);
             }
         },
         props:{

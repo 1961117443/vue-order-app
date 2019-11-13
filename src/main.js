@@ -10,7 +10,9 @@ import '@/lib/mui/css/mui.min.css'
 import '@/lib/mui/css/icons-extra.css'
 Vue.use(animated)
 // import SlideVerify from 'vue-monoplasty-slide-verify'
-
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 // Vue.use(SlideVerify)
 Vue.config.productionTip = false
 

@@ -1,0 +1,45 @@
+<template>
+    <div>
+        <mt-swipe :auto="4000">
+            <mt-swipe-item v-for="item in lunbotuList" :key="item['url']">
+                <img :src="item['img']" alt="" :class="{ full:isFull }">
+            </mt-swipe-item> 
+        </mt-swipe>
+    </div>
+</template>
+
+<script>
+//    import { Swipe, SwipeItem } from 'mint-ui';
+    export default {
+        data(){
+            return { 
+            }
+        },
+        props:{
+            lunbotuList:{
+                type: Array,
+                default:[]
+            },
+            isFull:{
+                type: Boolean,
+                default:false
+            }
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+.mint-swipe{
+    height: 200px;
+    
+    .mint-swipe-item{
+        text-align: center;
+        img{
+            height: 100%;
+        }
+    }
+}
+.full{ 
+    width: 100%;
+}
+</style>
