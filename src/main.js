@@ -6,6 +6,7 @@ import '@/style/index.scss' // glob scss
 import './plugins/element.js'
 import animated from 'animate.css'
 import '@/assets/iconfont/iconfont.css'
+
 import '@/lib/mui/css/mui.min.css'
 import '@/lib/mui/css/icons-extra.css'
 Vue.use(animated)

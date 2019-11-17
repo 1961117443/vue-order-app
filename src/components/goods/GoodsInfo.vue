@@ -1,5 +1,12 @@
 <template>
   <div class="goodsinfo-container">
+      <transition
+        @before-enter="beforeEnter"
+        @enter = "enter"
+        @after-enter="afterEnter"
+      >
+          <div class="ball" v-show="ballFlag" ref="ball"></div>
+      </transition>
     <!-- 商品轮播区域 -->
     <div class="mui-card">
       <div class="mui-card-content">
@@ -14,44 +21,52 @@
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
             <p class="price">
-                市场价:<del>￥2399</del>&nbsp;&nbsp;销售价:<span class="now_price">2199</span>
+                市场价：<del>￥2399</del>&nbsp;&nbsp;销售价：<span class="now_price">￥2199</span>
             </p>
-            <p>购买数量:<number></number><p/>
+            <p>购买数量：<input-number v-model="order.quantity" :min="1" label="数量：" size="small"></input-number><p/>
             <p>
                 <mt-button type="primary" size="small">立即购买</mt-button>
-                <mt-button type="danger" size="small">加入购物车</mt-button>
+                <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
             </p>
         </div>
       </div>
     </div>
     <!-- 商品参数区域 -->
     <div class="mui-card">
-        <div class="mui-card-header">页眉</div>
+        <div class="mui-card-header">商品参数</div>
         <div class="mui-card-content">
             <div class="mui-card-content-inner">
-                包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+                <p>商品货号：</p>
+                <p>库存情况：</p>
+                <p>上架时间：</p>
             </div>
         </div>
-        <div class="mui-card-footer">页脚</div>
+        <div class="mui-card-footer">
+            <mt-button type="primary" size="large" plain>图文介绍</mt-button>
+            <mt-button type="danger" size="large" plain>商品评论</mt-button>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 import Swiper from '@/components/Swiper/index.vue'
-import Number from '@/components/FormComponents/number.vue'
+import { InputNumber } from 'element-ui';
+// import Number from '@/components/FormComponents/number.vue'
 // import { Swipe, SwipeItem } from 'mint-ui';
 export default {
     components:{
        Swiper,
-       Number
-        // Swipe,
-        // SwipeItem
+       InputNumber
     },
     data(){
         return{
             id:this.$route.params.id,
-            lunbotuList:[]
+            lunbotuList:[],
+            ballFlag:false,
+            order:{
+                quantity:1
+            }
         }
     },
     created(){
@@ -61,6 +76,33 @@ export default {
         getLunbotu(){
             this.lunbotuList.push({url:1,img:"http://pzm01awax.bkt.clouddn.com/000e180582054df2bacaaa9500c326db"})
             this.lunbotuList.push({url:2,img:"http://pzm01awax.bkt.clouddn.com/03c073bab204483895d8aa7000ecd937"})
+        },
+        addToShopCar(){
+            //添加购物车
+            this.ballFlag = !this.ballFlag
+            let goodsinfo = {id:this.id,count:this.order.quantity,price:1000,selected:true}
+            // this.$store.commit('app/SET_SHOPCAR',goodsinfo)
+            this.$store.dispatch('user/addToShopCar',goodsinfo)
+            // console.log(this.$store)
+        },
+        beforeEnter(el){
+           el.style.transform = "translate(0,0)";
+        },
+        enter(el,done){
+            el.offsetWidth;
+            //小球在页面中的位置
+            const ballPosition = this.$refs.ball.getBoundingClientRect();
+            //购物车徽标的位置
+            const badgePosition = document.getElementById('shop-car-badge').getBoundingClientRect();
+            const xDist = badgePosition.left - ballPosition.left;
+            const yDist = badgePosition.top - ballPosition.top;
+
+            el.style.transform=`translate(${xDist}px,${yDist}px)`
+            el.style.transition="all 1s cubic-bezier(.4,-0.3,1,.68)";
+            done()
+        },
+        afterEnter(el){
+           this.ballFlag =!this.ballFlag
         }
     }
 };
@@ -75,6 +117,28 @@ export default {
         color: red;
         font-size: 16px;
         font-weight: bold;
+    }
+    p{
+        button{
+            margin: 0 3px;
+        }
+    }
+    .mui-card-footer{
+        display: block;
+        button{
+            margin: 10px 0;
+        }
+    }
+
+    .ball{
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute ;
+        z-index: 99;
+        top: 350px;
+        left: 155px;
     }
 }
 </style>

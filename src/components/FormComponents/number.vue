@@ -7,10 +7,18 @@
 </template>
 
 <script> 
-    // import mui from '@/lib/mui/js/mui.min.js'
+   import mui from '@/lib/mui/js/mui.min.js'
     export default {
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+
+        },
         mounted(){
-            mui(".mui-numbox").numbox()
+           mui(".mui-numbox").numbox()
         }
     }
 </script>

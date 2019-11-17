@@ -1,14 +1,14 @@
 module.exports = {
-  "presets": [
-    "@vue/app"
-  ],
-  "plugins": [
+  presets: ['@vue/app'],
+  plugins: [
     [
-      "component",
+      'component',
       {
-        "libraryName": "element-ui",
-        "styleLibraryName": "theme-chalk"
+        libraryName: 'element-ui',
+        styleLibraryName: 'theme-chalk'
       }
-    ]
-  ]
+    ],
+    'transform-remove-strict-mode'
+  ],
+  ignore: ['./src/lib/mui/js/mui.js', './src/lib/mui/js/mui.min.js']
 }

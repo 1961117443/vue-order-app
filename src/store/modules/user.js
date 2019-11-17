@@ -6,7 +6,8 @@ const state = {
   token: localStorage.getItem('token') ? localStorage.getItem('token') : '', // 认证凭证'
   userName: '',
   roles: [],
-  introduce: ''
+  introduce: '',
+  carList: []
 }
 const mutations = {
   SET_TOKEN(state, val) {
@@ -28,6 +29,18 @@ const mutations = {
   },
   SET_INTRODUCE(state, payload) {
     state.introduce = payload
+  },
+  SET_SHOPCAR(state, payload) {
+    console.log(payload)
+    let flag = state.carList.some(item => {
+      if (item.id == payload.id) {
+        item.count += parseInt(payload.count)
+        return true
+      }
+    })
+    if (!flag) {
+      state.carList.push(payload)
+    }
   }
 }
 const actions = {
@@ -79,6 +92,9 @@ const actions = {
           reject(error)
         })
     })
+  },
+  addToShopCar({ commit }, payload) {
+    commit('SET_SHOPCAR', payload)
   }
 }
 export default {
