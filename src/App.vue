@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="app-container">
-    <router-view></router-view>
+    <transition>
+      <router-view></router-view>
+    </transition>
     <!--底部 Tabbar 区域-->
     <nav class="mui-bar mui-bar-tab"> 
 			<router-link class="mui-tab-item-abc" to="/home">
@@ -31,11 +33,30 @@ export default {
 </script>
 
 <style>
-/* .main-app-container1{
-	padding-bottom: 40px;
-	overflow-x: hidden;
-} */
-* { touch-action: none; }
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  /* margin-top: 60px; */
+  // padding-top: 40px;
+  // padding-bottom: 50px;
+  /* margin-bottom: 40px; */ 
+ overflow-x:hidden;
+}
+  .v-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  .v-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+    position: absolute;
+  }
+  .v-enter-active,.v-leave-active {
+    transition: all 0.5s ease;
+  } 
     .mui-bar-tab .mui-tab-item-abc.mui-active {
     	color: #007aff;
 	}
