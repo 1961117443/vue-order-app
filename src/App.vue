@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app-container">
-    <transition>
+    <transition name="fade">
       <router-view></router-view>
     </transition>
     <!--底部 Tabbar 区域-->
@@ -45,16 +45,16 @@ export default {
    /* margin-bottom: 40px;  */
  overflow-x:hidden;
 }
-  .v-enter {
+  .fade-enter {
     opacity: 0;
     transform: translateX(100%);
   }
-  .v-leave-to {
+  .fade-leave-to {
     opacity: 0;
     transform: translateX(-100%);
     position: absolute;
   }
-  .v-enter-active,.v-leave-active {
+  .fade-enter-active,.fade-leave-active {
     transition: all 0.5s ease;
   } 
     .mui-bar-tab .mui-tab-item-abc.mui-active {
