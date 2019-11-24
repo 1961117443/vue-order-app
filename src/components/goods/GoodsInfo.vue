@@ -82,9 +82,7 @@ export default {
             //添加购物车
              this.ballFlag = !this.ballFlag
             let goodsinfo = {id:this.id,count:this.order.quantity,price:1000,selected:true}
-            // this.$store.commit('app/SET_SHOPCAR',goodsinfo)
-            this.$store.dispatch('user/addToShopCar',goodsinfo)
-            // console.log(this.$store)
+            this.$store.commit('order/addToCar',goodsinfo)
         },
         beforeEnter(el){
             //获取按钮的位置

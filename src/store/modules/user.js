@@ -92,9 +92,6 @@ const actions = {
           reject(error)
         })
     })
-  },
-  addToShopCar({ commit }, payload) {
-    commit('SET_SHOPCAR', payload)
   }
 }
 export default {

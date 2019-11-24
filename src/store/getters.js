@@ -13,6 +13,14 @@ const getters = {
     }
   },
   msgIsShow: state => state.app.msgIsShow,
-  showDriver: state => state.app.showDriver
+  showDriver: state => state.app.showDriver,
+  shopCarAllCount: state => {
+    let c = 0
+    state.order.car.forEach(item => {
+      c += item.count
+    })
+    return c
+  },
+  showCarList: state => state.order.car
 }
 export default getters
