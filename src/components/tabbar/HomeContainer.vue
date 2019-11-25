@@ -5,7 +5,7 @@
         <router-link class="mui-tab-item " to="/goodslist">
             <span class="mui-icon mui-icon-home"></span>
             <span class="mui-tab-label">商品列表</span>
-        </router-link>
+        </router-link> 
     </div>
 </template>
 
@@ -14,21 +14,14 @@
     export default {
         components: {
             Button
+        },
+        data(){
+            return {
+                popupVisible:false
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-// .mint-swipe{
-//     height: 200px;
-    
-//     .mint-swipe-item{
-//         &:nth-child(1){
-//             background-color: red;
-//         }
-//         &:nth-child(2){
-//             background-color: blue;
-//         }
-//     }
-// }
 </style>

@@ -19,8 +19,7 @@
     <div class="mui-card">
       <div class="mui-card-header">商品标题</div>
       <div class="mui-card-content">
-        <div class="mui-card-content-inner">
-           
+        <div class="mui-card-content-inner"> 
             <p class="price">
                 市场价：<del>￥2399</del>&nbsp;&nbsp;销售价：<span class="now_price">￥2199</span>
             </p>
@@ -28,7 +27,23 @@
             <p>
                 <mt-button type="primary" size="small">立即购买</mt-button>
                 <mt-button id="btn-add-to-shop" type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-            </p>
+            </p> 
+        </div>
+      </div>
+    </div>
+    <!-- 商品购买区域2 -->
+    <div class="mui-card">
+      <div class="mui-card-header">商品标题</div>
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner order-info">
+            <div class="order">
+                <div class="title">
+                    <mt-cell title="选择"></mt-cell>
+                </div>
+                <div @click="popupVisible=true" class="choose">
+                    <mt-cell title="" is-link></mt-cell>
+                </div> 
+            </div> 
         </div>
       </div>
     </div>
@@ -47,24 +62,29 @@
             <mt-button type="danger" size="large" plain>商品评论</mt-button>
         </div>
     </div>
+
+    <mt-popup class="popup-order" v-model="popupVisible" popup-transition="popup-fade" position="bottom" modal="true">
+        <order-item></order-item>    
+    </mt-popup>
   </div>
 </template>
 
 <script>
 import Swiper from '@/components/Swiper/index.vue'
+import OrderItem from '@/components/goods/OrderItem.vue'
 import { InputNumber } from 'element-ui';
-// import Number from '@/components/FormComponents/number.vue'
-// import { Swipe, SwipeItem } from 'mint-ui';
 export default {
     components:{
        Swiper,
-       InputNumber
+       InputNumber,
+       OrderItem
     },
     data(){
         return{
             id:this.$route.params.id,
             lunbotuList:[],
             ballFlag:false,
+            popupVisible:false,
             order:{
                 quantity:1
             }
@@ -77,6 +97,9 @@ export default {
         getLunbotu(){
             this.lunbotuList.push({url:1,img:"http://pzm01awax.bkt.clouddn.com/000e180582054df2bacaaa9500c326db"})
             this.lunbotuList.push({url:2,img:"http://pzm01awax.bkt.clouddn.com/03c073bab204483895d8aa7000ecd937"})
+        },
+        showPopup(){
+            console.log("showPopup")
         },
         addToShopCar(){
             //添加购物车
@@ -147,6 +170,26 @@ export default {
         z-index: 99;
         top: 100px;
         left: 150px;
+    }
+
+    .order-info{
+        padding: 0;
+        .order{
+            font-size: 16px; 
+                display: flex;
+            .title{
+                font-weight: bold; 
+                width: 80px;
+            }
+            .choose{
+                width: 100%;
+            }
+        }
+    }
+    
+    .popup-order{
+        width: 100%;
+        height: 50vh;
     }
 }
 </style>
