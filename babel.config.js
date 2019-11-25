@@ -3,10 +3,18 @@ module.exports = {
   plugins: [
     [
       'component',
-      {
-        libraryName: 'element-ui',
-        styleLibraryName: 'theme-chalk'
-      }
+      [
+        {
+          libraryName: 'element-ui',
+          styleLibraryName: 'theme-chalk'
+        }
+      ],
+      [
+        {
+          libraryName: 'mint-ui',
+          style: true
+        }
+      ]
     ],
     'transform-remove-strict-mode'
   ],

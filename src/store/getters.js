@@ -21,6 +21,29 @@ const getters = {
     })
     return c
   },
-  showCarList: state => state.order.car
+  showCarList: state => state.order.car,
+  getCarCountAndQuantity: (state, getters) => {
+    let o = {
+      count: 0,
+      quantity: 0
+    }
+    getters.showCarList.forEach(item => {
+      if (item.selected) {
+        o.count++
+        o.quantity += item.count
+      }
+    })
+    return o
+  },
+  IsCarSelectedAll: (state, getters) => {
+    let selected = true
+    getters.showCarList.some(item => {
+      if (!item.selected) {
+        selected = false
+        return true
+      }
+    })
+    return selected
+  }
 }
 export default getters

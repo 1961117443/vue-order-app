@@ -1,7 +1,23 @@
 <template>
-    <div class="goods-list">
+    <div class="goods-container">
+        <!-- <mt-header fixed title="固定在顶部"></mt-header> -->
+        <div class="goods-header">
+            <mt-search id="test2"
+  v-model="searchValue"
+  cancel-text="取消"
+  placeholder="搜索">
+</mt-search>
+        </div>
+        <!-- <mt-search
+        v-model="searchValue"
+        cancel-text="取消"
+        placeholder="搜索">
+        </mt-search> -->
+    <div class="goods-list"> 
        <goods-item :goods="item" v-for="item in goodsList" :key="item.id" ></goods-item>
     </div>
+    </div>
+    
 </template>
 
 <script>
@@ -12,6 +28,7 @@
         },
         data(){
             return{
+                searchValue:"",
                 goodsList:[
                     { id: 1,src:"http://pzm01awax.bkt.clouddn.com/000e180582054df2bacaaa9500c326db",title:"型号A01",stock_quantity:60,sell_price:2199,market_price:2499 },
                     { id: 2,src:"http://pzm01awax.bkt.clouddn.com/000e180582054df2bacaaa9500c326db",title:"型号A02",stock_quantity:60,sell_price:2199,market_price:2499 },
@@ -32,7 +49,8 @@
 </script>
 
 <style lang="scss" scoped>
-.goods-list{
+.goods-container{
+.goods-list{  
     display: flex;
     flex-wrap: wrap;
     padding: 7px;
@@ -79,4 +97,6 @@
         }
     }
 }
+}
+
 </style>

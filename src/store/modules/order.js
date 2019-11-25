@@ -18,6 +18,22 @@ const mutations = {
       state.car.push(data)
     }
     localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  removeFromCar(state, data) {
+    state.car.some((item, i) => {
+      if (item.id == data.id) {
+        state.car.splice(i, 1)
+        return true
+      }
+    })
+    localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  //是否全选
+  selectedAll(state, data) {
+    state.car.forEach(item => {
+      item.selected = data.selected
+    })
+    localStorage.setItem('car', JSON.stringify(state.car))
   }
 }
 // const actions = {

@@ -38,7 +38,7 @@
         <div class="mui-card-content-inner order-info">
             <div class="order">
                 <div class="title">
-                    <mt-cell title="选择"></mt-cell>
+                    <mt-cell title="已选"></mt-cell>
                 </div>
                 <div @click="popupVisible=true" class="choose">
                     <mt-cell title="" is-link></mt-cell>
@@ -103,7 +103,7 @@ export default {
         },
         addToShopCar(){
             //添加购物车
-             this.ballFlag = !this.ballFlag
+            this.ballFlag = !this.ballFlag
             let goodsinfo = {id:this.id,count:this.order.quantity,price:1000,selected:true}
             this.$store.commit('order/addToCar',goodsinfo)
         },

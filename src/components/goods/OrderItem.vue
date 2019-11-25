@@ -16,12 +16,12 @@
         </p>
         <p>
             <mt-cell title="">
-            <span>理论米重：<input-number v-model="order.llmz" :min="0" size="small" precision="3"></input-number></span>
+            <span>理论米重：<input-number v-model="order.llmz" :min="0" size="small" :precision="3"></input-number></span>
             </mt-cell>
         </p>
         <p>
             <mt-cell title="">
-            <span>长度：<input-number v-model="order.length" :min="0" size="small" precision="4"></input-number></span>
+            <span>长度：<input-number v-model="order.length" :min="0" size="small" :precision="4"></input-number></span>
             </mt-cell>
         </p>
         <p>
@@ -63,6 +63,10 @@ import { InputNumber } from 'element-ui';
         methods:{
             chooseClose(){ 
                 this.popupPackVisible=false;
+            },
+            //加入购物车
+            addToShopCar(){
+
             }
         },
         components:{
@@ -70,7 +74,7 @@ import { InputNumber } from 'element-ui';
         },
         computed:{
             weight(){
-                return (this.order.llmz * this.order.length * this.order.totalQuantity).toFixed(3)
+                return parseFloat((this.order.llmz * this.order.length * this.order.totalQuantity).toFixed(3))
             }
         }
     }

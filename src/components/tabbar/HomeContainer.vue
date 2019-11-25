@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <div class="home-container">
+        <mt-search v-model="value" id="test1"></mt-search>
+        
         <h1>首页</h1>
         <router-view></router-view>
         <router-link class="mui-tab-item " to="/goodslist">
@@ -17,6 +19,7 @@
         },
         data(){
             return {
+                value:"",
                 popupVisible:false
             }
         }
@@ -24,4 +27,6 @@
 </script>
 
 <style lang="scss" scoped>
+.home-container{
+}
 </style>
